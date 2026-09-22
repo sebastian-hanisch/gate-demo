@@ -1,5 +1,7 @@
 # Lkw-Gate: Was bringt ein Terminsystem? – Streamlit-Demo
 
+**[→ Demo live ausprobieren](https://sebastianhanisch-gate-demo.streamlit.app/)**
+
 Interaktive Fall-Demo zur **Warteschlange am Lkw-Gate eines Containerterminals**: In den Stoßzeiten kommen mehr Lkw, als die Gate-Spuren schaffen, und die Schlange wächst. Ein **Terminsystem** vergibt Zeitfenster mit
 begrenzter Kapazität und glättet die Spitzen. Die Demo beantwortet: **Was spart das an Wartezeit, was kostet es die Spediteure an Verschiebung, wie viele Spuren spart es, und wer trägt die Wartezeit, wenn nicht
 alle buchen?**
