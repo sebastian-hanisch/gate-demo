@@ -46,22 +46,22 @@ def test_stosszeit_thresholds():
     assert flags("Stoßzeit", rows(10, 1, shift=15.0))[2] is True and flags("Stoßzeit", rows(10, 1, shift=15.1))[2] is False
 
 
-def test_halbe_quote_thresholds():
+def test_niedrige_quote_thresholds():
     ok = rows(10, 9, pr=9, mean_b=1.0, mean_u=20.0)
-    assert flags("Halbe Quote", ok) == [True, True, True, True]
-    assert flags("Halbe Quote", rows(10, 8.0, pr=8.0, mean_b=1.0, mean_u=20.0))[0] is True and flags("Halbe Quote", rows(10, 7.9, pr=7.9, mean_b=1.0, mean_u=20.0))[0] is False
-    assert flags("Halbe Quote", rows(10, 9, mean_b=2.0, mean_u=20.0))[1] is True and flags("Halbe Quote", rows(10, 9, mean_b=2.1, mean_u=20.0))[1] is False
-    assert flags("Halbe Quote", rows(10, 9, mean_b=1.0, mean_u=15.0))[2] is True and flags("Halbe Quote", rows(10, 9, mean_b=1.0, mean_u=14.9))[2] is False
-    assert flags("Halbe Quote", rows(10, 9, pr=9.45, mean_b=1.0, mean_u=20.0))[3] is True and flags("Halbe Quote", rows(10, 9, pr=9.5, mean_b=1.0, mean_u=20.0))[3] is False   # 5 %
-    assert flags("Halbe Quote", rows(10, 9, pr=8.55, mean_b=1.0, mean_u=20.0))[3] is True and flags("Halbe Quote", rows(10, 9, pr=8.5, mean_b=1.0, mean_u=20.0))[3] is False
+    assert flags("Niedrige Quote", ok) == [True, True, True, True]
+    assert flags("Niedrige Quote", rows(10, 8.0, pr=8.0, mean_b=1.0, mean_u=20.0))[0] is True and flags("Niedrige Quote", rows(10, 7.9, pr=7.9, mean_b=1.0, mean_u=20.0))[0] is False
+    assert flags("Niedrige Quote", rows(10, 9, mean_b=2.0, mean_u=20.0))[1] is True and flags("Niedrige Quote", rows(10, 9, mean_b=2.1, mean_u=20.0))[1] is False
+    assert flags("Niedrige Quote", rows(10, 9, mean_b=1.0, mean_u=15.0))[2] is True and flags("Niedrige Quote", rows(10, 9, mean_b=1.0, mean_u=14.9))[2] is False
+    assert flags("Niedrige Quote", rows(10, 9, pr=9.45, mean_b=1.0, mean_u=20.0))[3] is True and flags("Niedrige Quote", rows(10, 9, pr=9.5, mean_b=1.0, mean_u=20.0))[3] is False   # 5 %
+    assert flags("Niedrige Quote", rows(10, 9, pr=8.55, mean_b=1.0, mean_u=20.0))[3] is True and flags("Niedrige Quote", rows(10, 9, pr=8.5, mean_b=1.0, mean_u=20.0))[3] is False
 
 
-def test_halbe_quote_without_trucks_of_a_class_fails_the_criterion_instead_of_crashing():
-    f = flags("Halbe Quote", rows(10, 9, pr=9))                                    # niemand ohne Termin, niemand mit: die Klassenwerte fehlen
+def test_niedrige_quote_without_trucks_of_a_class_fails_the_criterion_instead_of_crashing():
+    f = flags("Niedrige Quote", rows(10, 9, pr=9))                                    # niemand ohne Termin, niemand mit: die Klassenwerte fehlen
     assert f == [True, False, False, True]
-    text = " ".join(t for _, t in ST.criteria("Halbe Quote", rows(10, 9, pr=9)))
+    text = " ".join(t for _, t in ST.criteria("Niedrige Quote", rows(10, 9, pr=9)))
     assert "keine Lkw" in text
-    assert flags("Halbe Quote", rows(10, 9, pr=9, mean_b=1.0))[2] is False and flags("Halbe Quote", rows(10, 9, pr=9, mean_u=20.0))[1] is False
+    assert flags("Niedrige Quote", rows(10, 9, pr=9, mean_b=1.0))[2] is False and flags("Niedrige Quote", rows(10, 9, pr=9, mean_u=20.0))[1] is False
 
 
 def test_fenster_zu_weit_thresholds():
@@ -80,12 +80,12 @@ def test_voller_tag_thresholds():
 def test_holds_applies_the_same_criteria_to_a_single_day():
     day = rows(10, 1.5, shift=9.6, n=1)[0]
     assert ST.holds("Stoßzeit", day) and not ST.holds("Ruhiger Tag", day) and not ST.holds("Voller Tag", day)
-    assert ST.holds("Halbe Quote", rows(10, 9, pr=9, mean_b=1.0, mean_u=20.0, n=1)[0]) and not ST.holds("Halbe Quote", rows(10, 9, pr=9, mean_b=3.0, mean_u=20.0, n=1)[0])
+    assert ST.holds("Niedrige Quote", rows(10, 9, pr=9, mean_b=1.0, mean_u=20.0, n=1)[0]) and not ST.holds("Niedrige Quote", rows(10, 9, pr=9, mean_b=3.0, mean_u=20.0, n=1)[0])
 
 
 def test_key_values_lists_only_the_typical_measures_of_the_preset():
     r = rows(10, 1.5, mean_b=1.0, mean_u=20.0)
     kv = ST.key_values("Stoßzeit", r)
     assert set(kv) == {(FR, "mean"), (SH, "mean")} and kv[(FR, "mean")] == 10 and kv[(SH, "mean")] == 1.5
-    assert set(ST.key_values("Halbe Quote", r)) == {(SH, "mean"), (PR, "mean_unbooked")} and ST.key_values("Halbe Quote", r)[(PR, "mean_unbooked")] == 20.0
+    assert set(ST.key_values("Niedrige Quote", r)) == {(SH, "mean"), (PR, "mean_unbooked")} and ST.key_values("Niedrige Quote", r)[(PR, "mean_unbooked")] == 20.0
     assert {n for n, _, _ in ST.TYPICAL} == set(C.PRESETS)

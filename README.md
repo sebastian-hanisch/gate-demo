@@ -45,7 +45,7 @@ Tag mit drei Regeln kostet 1,5 bis 3 ms; der größte Fall komplett unter 2 s).
 | **Wie eng müssen die Fenster sein?** | Knie bei **90 bis 100 % der Gate-Kapazität**: dort sinkt die Wartezeit am stärksten; darunter gewinnt man nur noch eine halbe Minute, die Verschiebung wächst um mehr als die Hälfte. Bei 120 % lassen die Fenster die Spitze durch (7,3 min). |
 | **Was, wenn nicht alle buchen?** | Der Nutzen verschwindet mit sinkender Quote: mittlere Wartezeit bei Quote 100 / 80 / 60 % **1,5 / 6,5 / 9,3 min**. Die Lkw ohne Termin halten die Spitze. |
 | **Was macht der Vorrang?** | Bei 60 % Quote warten Termininhaber **1,1 min**, Lkw ohne Termin **21,7 min**; das Mittel bleibt (9,26 gegen 9,27), das **95. Perzentil verdoppelt sich** (28,7 → 54,3 min): der Vorrang verlagert, er spart nicht. |
-| **Wie viele Spuren spart das Terminsystem?** | Für „95 % warten höchstens 15 min“: 500 / 700 / 900 Lkw brauchen ohne Terminsystem 4 / 6 / 7 Spuren, mit Terminsystem 3 / 4 / 4 (bei 900 Lkw 36,8 min Verschiebung, 4 % ohne Fenster). |
+| **Wie viele Spuren spart das Terminsystem?** | Für „95 % warten höchstens 15 min“: 500 / 700 / 900 Lkw brauchen ohne Terminsystem 4 / 6 / 7 Spuren, mit Terminsystem 3 / 4 / 4 (bei 900 Lkw 36,8 min Verschiebung, 4 % ohne Fenster); Messreihe über 200 Tage, die App rechnet je Punkt nur 50 Tage und zeigt bei 700 Lkw ohne Terminsystem 5 statt 6 Spuren, weil das 95. Perzentil dort dicht an der 15-min-Schwelle liegt. |
 | **Was, wenn die Lkw unpünktlich sind?** | Das Terminsystem hält bis σ ≈ 90 min (drei Fensterlängen); erst dort ist der Unterschied weg, weil die Verspätung die Spitzen auch ohne Termine verschmiert. |
 | **Was ändert nichts?** | Fensterlänge 10 bis 120 min bei gleicher relativer Kapazität: Wartezeit 1,3 bis 1,4 min. Größere Streuung der Bearbeitung erhöht die Wartezeit mit Terminsystem (cv 1,5: 2,9 statt 1,4 min). Ohne Spitzen bringt das Terminsystem nichts. |
 | **Presets** | Eine gemeinsame Tages-Nummer (Seed 289) für alle fünf; jede Kennzahl zwischen dem 10. und 90. Perzentil der Grundgesamtheit. Von 500 Seeds tragen 215 alle fünf Geschichten. |
@@ -67,7 +67,7 @@ nennt deshalb im Hilfetext die mittlere Auslastung, und das Preset „Ruhiger Ta
 **Zwei Modellfehler der ersten Fassung, in der Messreihe gefunden.** (1) Die Buchung erlaubte Fenster hinter Betriebsschluss; das ergab Verschiebungen von 500 min und scheinbar gesparte Spuren. Jetzt gibt es keine Fenster jenseits des
 Tages, wer keins findet, kommt wie ohne Termin. (2) Die Verschiebung wurde gegen die Fenstermitte gemessen und enthielt so rund 7 min Rundungsanteil auch ohne jede Verschiebung; jetzt gegen das Wunschfenster.
 
-**Der Vorrang verlagert, er spart nicht.** Der Erhaltungssatz (bei gleichen Bearbeitungszeiten bleibt das Mittel über alle Lkw gleich) ist als Test eingebaut. Dass das 95. Perzentil dabei **steigt**, hatte der Plan nicht genannt; die App
+**Der Vorrang verlagert, er spart nicht.** Der Erhaltungssatz (bei gleichen Bearbeitungszeiten bleibt das Mittel über alle Lkw gleich, exakt für eine Spur, bei mehreren Spuren nur näherungsweise: in den Presets weicht es um weniger als 0,3 % ab) ist als Test eingebaut. Dass das 95. Perzentil dabei **steigt**, hatte der Plan nicht genannt; die App
 zeigt es bei der Regel Vorrang, und die Bedingte Meldung nennt beide Klassen.
 
 **Gemeinsame Zufallszahlen und Buchungsreihenfolge.** Alle Regeln laufen auf denselben Zufallszahlen je Tag, die Buchungsreihenfolge ist zufällig und für alle Regeln gleich; sonst entstünde ein Scheinvorteil (Lehre aus der Reefer-Demo).

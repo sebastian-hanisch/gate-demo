@@ -10,7 +10,7 @@ import gate_evaluation as E
 FR, SH, PR = C.RULE_FREE, C.RULE_SHARED, C.RULE_PRIO
 
 # Kennzahlen, an denen 'typisch' gemessen wird: (Preset, Regel, Feld)
-TYPICAL = (("Ruhiger Tag", FR, "mean"), ("Stoßzeit", FR, "mean"), ("Stoßzeit", SH, "mean"), ("Halbe Quote", SH, "mean"), ("Halbe Quote", PR, "mean_unbooked"),
+TYPICAL = (("Ruhiger Tag", FR, "mean"), ("Stoßzeit", FR, "mean"), ("Stoßzeit", SH, "mean"), ("Niedrige Quote", SH, "mean"), ("Niedrige Quote", PR, "mean_unbooked"),
            ("Fenster zu weit", SH, "mean"), ("Voller Tag", FR, "mean"), ("Voller Tag", SH, "mean"))
 
 
@@ -26,7 +26,7 @@ def criteria(name, rows):
         return [(fr >= 8.0, f"frei >= 8 min: {fr:.1f}"),
                 (sh <= 0.25 * fr, f"Terminsystem <= 25 % davon: {sh:.1f}"),
                 (shift <= 15.0, f"Verschiebung <= 15 min: {shift:.1f}")]
-    if name == "Halbe Quote":
+    if name == "Niedrige Quote":
         booked, unbooked = E.mean_of(rows, PR, "mean_booked"), E.mean_of(rows, PR, "mean_unbooked")
         fmt = lambda v: "keine Lkw" if v is None else f"{v:.1f}"          # noqa: E731  (gibt es keine Lkw dieser Gruppe, ist das Kriterium nicht erfüllt)
         return [(sh >= 0.8 * fr, f"Terminsystem >= 80 % der freien Wartezeit: {sh:.1f} gegen {fr:.1f}"),

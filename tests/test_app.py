@@ -21,7 +21,7 @@ FR, SH, PR = C.RULE_FREE, C.RULE_SHARED, C.RULE_PRIO
 
 # Am Preset-Tag (Seed 289), Regel Terminsystem: (mittlere Wartezeit, Delta, 95. Perzentil, Delta) und Art der Meldung
 EXPECTED = {"Ruhiger Tag": ("0.2 min", "-0.2 min", "1 min", "-1 min", "calm"), "Stoßzeit": ("1.6 min", "-8.3 min", "6 min", "-19 min", "helps"),
-            "Halbe Quote": ("9.3 min", "-0.6 min", "24 min", "-1 min", "quota"), "Fenster zu weit": ("7.2 min", "-2.6 min", "20 min", "-5 min", "wide"),
+            "Niedrige Quote": ("9.3 min", "-0.6 min", "24 min", "-1 min", "quota"), "Fenster zu weit": ("7.2 min", "-2.6 min", "20 min", "-5 min", "wide"),
             "Voller Tag": ("4.7 min", "-25.2 min", "11 min", "-55 min", "helps")}
 
 

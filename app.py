@@ -70,7 +70,7 @@ st.caption("🎯 Schnellstart – ein Beispielszenario laden:")
 PRESET_HELP = {
     "Ruhiger Tag": "Kaum Schlange: das Terminsystem bringt nichts und kostet nur Verschiebung.",
     "Stoßzeit": "Die Spitzen überlasten das Gate: das Terminsystem glättet sie und senkt die Wartezeit stark, gegen eine Verschiebung von rund zehn Minuten.",
-    "Halbe Quote": "Nur 60 % buchen: in der gemeinsamen Schlange bleibt fast alles beim Alten, der Vorrang verteilt die Wartezeit nur um (Termininhaber kurz, die anderen lang).",
+    "Niedrige Quote": "Nur 60 % buchen: in der gemeinsamen Schlange bleibt fast alles beim Alten, der Vorrang verteilt die Wartezeit nur um (Termininhaber kurz, die anderen lang).",
     "Fenster zu weit": "Die Fenster sind weiter als das Gate: sie lassen die Spitze durch und bringen kaum etwas.",
     "Voller Tag": "Volle Auslastung: ohne Termine bricht das Gate zusammen, mit Terminen bleibt es tragbar, aber die Verschiebung wird groß.",
 }
@@ -294,7 +294,7 @@ die **Verspätung** streut mit σ um den Wunschzeitpunkt.
 Kapazität des Gates und schiebt den Überschuss in ruhigere Fenster: die Wartezeit wandert vom Gate zur Wunschzeit der Buchenden. Das kostet Verschiebung.
 
 **Warum die Buchungsquote zählt.** Buchen nur einige, bleibt die Spitze der Lkw ohne Termin, und alle stehen in derselben Schlange: die Wartezeit sinkt kaum. Ein **Vorrang** für Termininhaber senkt
-deren Wartezeit stark, aber nicht das Mittel über alle (bei gleichen Bearbeitungszeiten gilt ein Erhaltungssatz): die Lkw ohne Termin warten entsprechend länger. Das ist ein Anreiz zu buchen, keine
+deren Wartezeit stark, aber nicht das Mittel über alle (bei gleichen Bearbeitungszeiten gilt ein Erhaltungssatz, bei mehreren Spuren nur näherungsweise: in den Presets weicht das Mittel um weniger als 0,3 % ab): die Lkw ohne Termin warten entsprechend länger. Das ist ein Anreiz zu buchen, keine
 Einsparung.
 
 **Warum die Auslastung zählt.** Bei ruhigem Tag (niedrige mittlere Auslastung) gibt es keine Schlange, die ein Terminsystem glätten könnte: es kostet dann nur Verschiebung.
@@ -329,7 +329,7 @@ Buchungsquote $b$) kommen in zufälliger Reihenfolge; Lkw $j$ mit Wunschfenster 
 Findet er keins, bleibt er ohne Fenster. **Verschiebung** $V = \frac{30}{|B|} \sum_{j \in B} |k_j - w(j)|$ über die Buchenden $B$.
 
 **Vorrang.** Wird eine Spur zur Zeit $t$ frei, wählt sie unter den bereits angekommenen Lkw den mit Termin und kleinster Ankunftszeit, sonst den ohne (nicht unterbrechend). Für klassenunabhängige
-Bearbeitungszeiten gilt der Erhaltungssatz: das Mittel der Wartezeit über alle Lkw ist gleich dem bei FIFO.
+Bearbeitungszeiten gilt der Erhaltungssatz: das Mittel der Wartezeit über alle Lkw ist gleich dem bei FIFO (exakt für eine Spur, bei mehreren Spuren und lognormaler Bearbeitung nur näherungsweise).
 
 **Kennzahlen.** Mittlere Wartezeit $\bar W$, 95. Perzentil $W_{(\lfloor 0{,}95 n \rfloor)}$, Anteil mit $W_j > 15$ min, Verschiebung $V$; Auslastung $\rho = \sum_j s_j / (c \cdot 720)$. Gate-Kapazität je Fenster $30 c / \bar s$.
 

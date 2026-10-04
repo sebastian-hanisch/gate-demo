@@ -64,7 +64,7 @@ DAY_FIGURE_HEIGHT = 400
 PRESETS = {
     "Ruhiger Tag": dict(lanes=4, trucks=350, service=3, peak_pct=50, cap_pct=90, share_pct=100, sigma=10, seed=289),
     "Stoßzeit": dict(lanes=4, trucks=650, service=3, peak_pct=50, cap_pct=90, share_pct=100, sigma=10, seed=289),
-    "Halbe Quote": dict(lanes=4, trucks=650, service=3, peak_pct=50, cap_pct=90, share_pct=60, sigma=10, seed=289),
+    "Niedrige Quote": dict(lanes=4, trucks=650, service=3, peak_pct=50, cap_pct=90, share_pct=60, sigma=10, seed=289),
     "Fenster zu weit": dict(lanes=4, trucks=650, service=3, peak_pct=50, cap_pct=120, share_pct=100, sigma=10, seed=289),
     "Voller Tag": dict(lanes=4, trucks=850, service=3, peak_pct=50, cap_pct=100, share_pct=100, sigma=10, seed=289),
 }

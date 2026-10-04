@@ -52,17 +52,17 @@ def test_the_shown_day_is_typical_for_every_key_measure(name):
 
 def test_the_stories_differ_between_presets():
     assert not all(ok for ok, _ in ST.criteria("Stoßzeit", population("Ruhiger Tag")))
-    assert not all(ok for ok, _ in ST.criteria("Stoßzeit", population("Halbe Quote")))
+    assert not all(ok for ok, _ in ST.criteria("Stoßzeit", population("Niedrige Quote")))
     assert not all(ok for ok, _ in ST.criteria("Fenster zu weit", population("Stoßzeit")))
-    assert not all(ok for ok, _ in ST.criteria("Halbe Quote", population("Stoßzeit")))
+    assert not all(ok for ok, _ in ST.criteria("Niedrige Quote", population("Stoßzeit")))
 
 
 def test_the_population_reproduces_the_messreihe():
-    """sweep6.json (hafen-planung/messreihe_gate): Stoßzeit frei 9,91 / Terminsystem 1,46 / Verschiebung 9,6; Halbe Quote Termininhaber 1,08, ohne Termin 21,69."""
+    """sweep6.json (hafen-planung/messreihe_gate): Stoßzeit frei 9,91 / Terminsystem 1,46 / Verschiebung 9,6; Niedrige Quote Termininhaber 1,08, ohne Termin 21,69."""
     pop = population("Stoßzeit")
     assert E.mean_of(pop, C.RULE_FREE) == pytest.approx(9.91, abs=0.01) and E.mean_of(pop, C.RULE_SHARED) == pytest.approx(1.46, abs=0.01)
     assert E.mean_of(pop, C.RULE_FREE, "p95") == pytest.approx(30.5, abs=0.05) and E.mean_of(pop, C.RULE_SHARED, "shift") == pytest.approx(9.6, abs=0.05)
-    half = population("Halbe Quote")
+    half = population("Niedrige Quote")
     assert E.mean_of(half, C.RULE_SHARED) == pytest.approx(9.27, abs=0.01) and E.mean_of(half, C.RULE_PRIO, "mean_booked") == pytest.approx(1.08, abs=0.01)
     assert E.mean_of(half, C.RULE_PRIO, "mean_unbooked") == pytest.approx(21.69, abs=0.02)
     full = population("Voller Tag")

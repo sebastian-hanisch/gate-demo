@@ -49,7 +49,7 @@ def test_specs_match_constants_and_defaults_inside_bounds():
 
 
 def test_every_preset_is_inside_bounds_on_the_step():
-    assert list(C.PRESETS) == ["Ruhiger Tag", "Stoßzeit", "Halbe Quote", "Fenster zu weit", "Voller Tag"] and all(len(n) <= 16 for n in C.PRESETS)
+    assert list(C.PRESETS) == ["Ruhiger Tag", "Stoßzeit", "Niedrige Quote", "Fenster zu weit", "Voller Tag"] and all(len(n) <= 16 for n in C.PRESETS)
     for name, p in C.PRESETS.items():
         assert set(p) == set(P.PRESET_STATE_KEYS)
         for field, state_key in P.PRESET_STATE_KEYS.items():
@@ -63,7 +63,7 @@ def test_every_preset_is_inside_bounds_on_the_step():
 def test_presets_differ_from_the_stossszeit_baseline_in_exactly_the_intended_setting():
     base = C.PRESETS["Stoßzeit"]
     diffs = {name: {k for k in base if base[k] != p[k]} for name, p in C.PRESETS.items() if name != "Stoßzeit"}
-    assert diffs == {"Ruhiger Tag": {"trucks"}, "Halbe Quote": {"share_pct"}, "Fenster zu weit": {"cap_pct"}, "Voller Tag": {"trucks", "cap_pct"}}
+    assert diffs == {"Ruhiger Tag": {"trucks"}, "Niedrige Quote": {"share_pct"}, "Fenster zu weit": {"cap_pct"}, "Voller Tag": {"trucks", "cap_pct"}}
     assert base == dict(lanes=4, trucks=650, service=3, peak_pct=50, cap_pct=90, share_pct=100, sigma=10, seed=289)
 
 
