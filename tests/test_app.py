@@ -12,9 +12,11 @@ import gate_evaluation as E
 from gate_presets import SETTING_SPECS
 
 APP = str(pathlib.Path(__file__).resolve().parent.parent / "app.py")
-FOOTER = ("Diese Demo ist Teil des Portfolios von [Sebastian Hanisch](https://sebastianhanisch.net) – "
-          "Operations Research und Machine Learning. Interesse an einer maßgeschneiderten Lösung für "
-          "Ihr Unternehmen? [Kontakt aufnehmen](https://sebastianhanisch.net/kontakt.html)")
+FOOTER = (
+    "Diese Demo ist Teil des Portfolios von [Sebastian Hanisch](https://sebastianhanisch.net) – "
+    "Operations Research und Machine Learning ([Über mich](https://sebastianhanisch.net/ueber-mich.html)). "
+    "Mehr zum Thema: [Hof- und Yard-Management optimieren](https://sebastianhanisch.net/yard-management-optimierung.html)."
+)
 FR, SH, PR = C.RULE_FREE, C.RULE_SHARED, C.RULE_PRIO
 
 # Am Preset-Tag (Seed 289), Regel Terminsystem: (mittlere Wartezeit, Delta, 95. Perzentil, Delta) und Art der Meldung
