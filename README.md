@@ -6,7 +6,7 @@ Interaktive Fall-Demo zur **Warteschlange am Lkw-Gate eines Containerterminals**
 begrenzter Kapazität und glättet die Spitzen. Die Demo beantwortet: **Was spart das an Wartezeit, was kostet es die Spediteure an Verschiebung, wie viele Spuren spart es, und wer trägt die Wartezeit, wenn nicht
 alle buchen?**
 
-Teil des Portfolios für die Website „Sebastian Hanisch – Operations Research und Machine Learning", Zusatz zur Hafen-Linie (Lkw-Terminvergabe; setzt auf der `truck-appointment-demo` auf, die die Termine an
+Teil des Portfolios für die Website „Sebastian Hanisch – Operations Research und Machine Learning“, Zusatz zur Hafen-Linie (Lkw-Terminvergabe; setzt auf der `truck-appointment-demo` auf, die die Termine an
 Hallentoren deterministisch plant, hier die stochastische Warteschlange davor).
 
 ## Warum dieses Problem

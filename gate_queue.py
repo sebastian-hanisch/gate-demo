@@ -45,13 +45,16 @@ def waits_priority(arrive, service, booked, lanes):
             i = idx[k]
             heapq.heappush(heap_b if booked[i] else heap_w, (arrive[i], i))
             k += 1
-        if not heap_b and not heap_w:                       # niemand wartet: die Spur wartet auf den nächsten Lkw
-            t = arrive[idx[k]]
+        ready_b = bool(heap_b) and heap_b[0][0] <= t        # wartet schon (Ankunft <= t)? Nach einem Sprung der Spur können gleichzeitig angekommene Lkw im Heap liegen,
+        ready_w = bool(heap_w) and heap_w[0][0] <= t        # die für eine andere, früher freie Spur noch nicht angekommen sind (sonst negative Wartezeit)
+        if not ready_b and not ready_w:                     # niemand wartet: die Spur wartet auf den nächsten Lkw
+            t = min([h[0][0] for h in (heap_b, heap_w) if h] + ([arrive[idx[k]]] if k < n else []))
             while k < n and arrive[idx[k]] <= t:
                 i = idx[k]
                 heapq.heappush(heap_b if booked[i] else heap_w, (arrive[i], i))
                 k += 1
-        a, i = heapq.heappop(heap_b) if heap_b else heapq.heappop(heap_w)
+            ready_b = bool(heap_b) and heap_b[0][0] <= t
+        a, i = heapq.heappop(heap_b) if ready_b else heapq.heappop(heap_w)
         waits[i] = t - a
         heapq.heappush(free, t + service[i])
     return waits
