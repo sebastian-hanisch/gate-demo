@@ -282,7 +282,7 @@ def test_view_radio_switches_the_rule_shown_in_the_metrics_and_the_permalink():
     assert main_metrics(at)[0][1:] == ("9.3 min", "-0.6 min")
     at = at.radio(key="view_radio").set_value(PR).run()
     assert not at.exception and main_metrics(at)[0][1:] == ("9.1 min", "-0.8 min")                                 # Vorrang senkt das Mittel nicht (9,3 gegen 9,1), nur die Klassenwerte
-    assert main_metrics(at)[1][1:] == ("48 min", "+23 min")                                                          # aber das 95. Perzentil steigt: die Lkw ohne Termin tragen den langen Schwanz
+    assert main_metrics(at)[1][1:] == ("48 min", "+23 min")                                                          # aber das 95. Perzentil steigt: die Lkw ohne Termin tragen den langen Tail
     assert at.query_params["vw"] in ("vorrang", ["vorrang"])
 
 

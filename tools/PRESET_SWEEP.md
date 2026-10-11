@@ -22,7 +22,7 @@ Urteil (gepaarte Differenz je Tag, klar ab zwei Standardfehlern), Terminsystem g
 
 ## Befunde und Abweichungen vom Plan
 
-- **Der Vorrang verdoppelt das 95. Perzentil (Niedrige Quote), das der Plan nicht genannt hatte.** Er senkt die Wartezeit der Termininhaber auf 1,1 min, aber die Lkw ohne Termin (40 % der Lkw) tragen jetzt den langen Schwanz: 21,7 min im Mittel.
+- **Der Vorrang verdoppelt das 95. Perzentil (Niedrige Quote), das der Plan nicht genannt hatte.** Er senkt die Wartezeit der Termininhaber auf 1,1 min, aber die Lkw ohne Termin (40 % der Lkw) tragen jetzt den langen Tail: 21,7 min im Mittel.
   Der Anteil über 15 min sinkt dabei (an Seed 289 von 38 auf 20 %), weil weniger Lkw lange warten, die übrigen aber viel länger. Der Erhaltungssatz gilt für das Mittel, nicht für Perzentile. Die App zeigt beides (Kennzahl 95. Perzentil bei der Regel Vorrang).
 - **Ruhiger Tag:** Das Terminsystem senkt die Wartezeit statistisch klar (−0,05 min), aber bedeutungslos klein; die Verschiebung ist 0,1 min. Das Kriterium lautet deshalb „nicht mehr als 1 min anders“, nicht „nicht klar besser“.
 - **Fenster zu weit (120 %):** Die Fenster lassen die Spitze durch: 7,26 gegen 9,91 min, kaum Verschiebung (1,7 min). Bei 90 % sind es 1,46 min.
