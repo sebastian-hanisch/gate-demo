@@ -77,7 +77,7 @@ im Test (sie werden nicht aus dem Code gelesen).
 
 ## Tests
 
-`python -m pytest tests/ -v` – 182 Tests, rund 3 Minuten. Zusammensetzung:
+`python -m pytest tests/ -v` – 192 Tests, rund 3 Minuten. Zusammensetzung:
 
 - **Theorie und Rechnung:** die Warteschlange gegen Erlang C (M/M/c) und die M/M/1-Formel, gegen eine **unabhängige Ereignisliste** auf 50 Zufallstagen, Vorrang = FIFO bitgleich bei nur einer Klasse, Vorrang bedient nie einen Lkw ohne Termin, solange einer mit Termin wartet,
   Erhaltungssatz, von Hand gerechnete Fälle.
