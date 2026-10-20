@@ -66,6 +66,17 @@ alle buchen (**Buchungsquote**). Wie das Modell funktioniert, steht im Expander 
 """
 )
 
+# erklaerseite:einfach:start (erzeugt von tools/set_demo_explainer.py (Website-Repo) aus tools/content/explainers/gate-warteschlange-erklaert.json, nicht von Hand ändern)
+with st.expander("💬 In einfachen Worten"):
+    st.markdown(
+        """
+Am Gate eines Containerterminals fertigen mehrere Spuren die Lkw ab. In den Stoßzeiten kommen mehr Lkw, als die Spuren schaffen, und die Schlange wächst. Ein **Terminsystem** vergibt Zeitfenster mit begrenzter Platzzahl und glättet so die Spitzen. Dafür müssen Spediteure, also die Transportfirmen, ihre Fahrt auf ein anderes Fenster verschieben. Die Demo zeigt, wie viel Wartezeit das spart, was die Verschiebung kostet und was passiert, wenn nicht alle Lkw buchen oder wenn Lkw mit Termin Vorrang bekommen. Der Vorrang senkt deren Wartezeit, aber die Lkw ohne Termin warten dann länger. Es ist ein vereinfachtes Modell mit angenommenen Zahlen, keine Messung an echten Terminals.
+
+[Ausführlich und verständlich erklärt, mit Fachteil](https://sebastianhanisch.net/gate-warteschlange-erklaert.html)
+        """
+    )
+# erklaerseite:einfach:end
+
 st.caption("🎯 Schnellstart – ein Beispielszenario laden:")
 PRESET_HELP = {
     "Ruhiger Tag": "Kaum Schlange: das Terminsystem bringt nichts und kostet nur Verschiebung.",
@@ -315,6 +326,29 @@ Standardfehler der gepaarten Differenz beträgt. Die Verteilung zeigt, an wie vi
     )
 
 with st.expander("📐 Mathematische Formulierung"):
+    # erklaerseite:lesehilfe:start (erzeugt von tools/set_demo_explainer.py (Website-Repo) aus tools/content/explainers/gate-warteschlange-erklaert.json, nicht von Hand ändern)
+    st.markdown(
+        r"""
+**Lesehilfe.** Gegeben sind die Wunschzeiten der Lkw, die Zahl der Spuren $c$, die Bearbeitungszeiten $s_j$, die Fensterkapazität und die Buchungsquote. Gesucht sind die Wartezeit $W_j$ je Lkw, ihr Mittel und das 95. Perzentil sowie die Verschiebung $V$ der Buchenden.
+
+| Symbol | Bedeutung |
+|---|---|
+| $j$, $l$ | Lkw, Spur |
+| $a_j$ | Ankunftszeit des Lkw $j$ |
+| $s_j$, $\bar s$ | Bearbeitungszeit des Lkw $j$, mittlere Bearbeitungszeit |
+| $f_l$ | Zeit, zu der Spur $l$ frei wird |
+| $W_j$ | Wartezeit des Lkw $j$ |
+| $c$ | Zahl der Spuren |
+| $k_j$, $w(j)$ | gebuchtes Fenster und Wunschfenster des Lkw $j$ |
+| $K$ | Zahl der Lkw, die ein Fenster höchstens aufnimmt |
+| $q$ | Fensterkapazität in Prozent der Gate-Kapazität |
+| $B$ | Menge der Lkw, die ein Fenster gebucht haben |
+| $V$ | Verschiebung: mittlerer Abstand zwischen gebuchtem und Wunschfenster, in Minuten |
+
+[Schritt für Schritt erklärt, mit Herleitung und Literatur](https://sebastianhanisch.net/gate-warteschlange-erklaert.html#fachleute)
+        """
+    )
+    # erklaerseite:lesehilfe:end
     st.markdown(
         r"""
 **Gate.** $c$ gleiche Spuren, eine gemeinsame Schlange. Lkw $j$ kommt zur Zeit $a_j$ und braucht $s_j$ Minuten (lognormal mit Mittel $\bar s$ und Variationskoeffizient $0{,}6$). Sei $f_l$ die Zeit, zu der Spur

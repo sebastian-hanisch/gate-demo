@@ -40,7 +40,7 @@ Tag mit drei Regeln kostet 1,5 bis 3 ms; der größte Fall komplett unter 2 s).
 
 | Frage | Befund |
 |---|---|
-| **Stimmt die Rechnung?** | Die Warteschlange stimmt mit **Erlang C** überein (Poisson-Ankünfte, exponentielle Bearbeitung, 4 bis 6 Spuren): −0,4 bis −0,7 % (Test gegen die Theorie, dazu gegen eine unabhängige Ereignisliste). |
+| **Stimmt die Rechnung?** | Die Warteschlange stimmt mit **Erlang C** überein (Poisson-Ankünfte, exponentielle Bearbeitung, 4 bis 6 Spuren): Die simulierte mittlere Wartezeit liegt in den Testfällen (4 und 6 Spuren, je vier Läufe zu 60 000 Ankünften) um 1,8 bis 3,7 % unter der Formel; der Test erlaubt 4 % (`test_queue.py`, dazu ein Vergleich mit einer unabhängigen Ereignisliste). |
 | **Was bringt das Terminsystem?** | Mittlere Wartezeit **9,91 → 1,46 min** (95. Perzentil 30,5 → 5,9), bei **9,6 min Verschiebung**. Bei 89 % Auslastung 30,2 → 5,0 min (Verschiebung 18,1 min). |
 | **Wie eng müssen die Fenster sein?** | Knie bei **90 bis 100 % der Gate-Kapazität**: dort sinkt die Wartezeit am stärksten; darunter gewinnt man nur noch eine halbe Minute, die Verschiebung wächst um mehr als die Hälfte. Bei 120 % lassen die Fenster die Spitze durch (7,3 min). |
 | **Was, wenn nicht alle buchen?** | Der Nutzen verschwindet mit sinkender Quote: mittlere Wartezeit bei Quote 100 / 80 / 60 % **1,5 / 6,5 / 9,3 min**. Die Lkw ohne Termin halten die Spitze. |

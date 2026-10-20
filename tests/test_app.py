@@ -82,7 +82,7 @@ def test_skeleton_and_footer():
     assert len(at.title) == 1 and "Gate" in at.title[0].value
     assert any(v.value.startswith("## 🎯") for v in at.markdown)
     assert [s.value for s in at.subheader] == ["📐 Was kostet das Terminsystem, und wie viele Spuren spart es?"]
-    assert [e.label for e in at.expander] == ["🔧 Wie wir das erreichen – Regeln im Vergleich", "Wie funktioniert diese Demo?", "📐 Mathematische Formulierung"]
+    assert [e.label for e in at.expander] == ["💬 In einfachen Worten", "🔧 Wie wir das erreichen – Regeln im Vergleich", "Wie funktioniert diese Demo?", "📐 Mathematische Formulierung"]
     assert any(c.value == FOOTER for c in at.caption)
     presets = [b.label for b in at.button if b.label in C.PRESETS]
     assert presets == list(C.PRESETS) and len(presets) == 5 and all(len(n) <= 16 for n in presets)
@@ -319,10 +319,10 @@ def test_pdf_download_button_is_offered():
 
 def test_texts_state_the_rules_the_assumptions_and_the_limits():
     at = fresh()
-    text = "\n".join(m.value for m in at.expander[1].markdown)
+    text = "\n".join(m.value for m in at.expander[2].markdown)
     for needle in ("Freie Anfahrt", "Terminsystem", "Vorrang", "Verschiebung", "Fensterkapazität", "Buchungsquote", "Erhaltungssatz", "keine No-Shows", "Größenordnungen aus einer Simulation",
                    "Erlang C", "keine Platzgrenze"):
         assert needle in text, needle
-    math = "\n".join(m.value for m in at.expander[2].markdown)
+    math = "\n".join(m.value for m in at.expander[3].markdown)
     for needle in ("Erlang-C-Formel", "\\lfloor q \\cdot c \\cdot 30 / \\bar s \\rfloor", "Erhaltungssatz", "2\\,\\mathrm{SE}", "Verschiebung"):
         assert needle in math, needle
