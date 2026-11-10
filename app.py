@@ -83,7 +83,7 @@ PRESET_HELP = {
     "Stoßzeit": "Die Spitzen überlasten das Gate: das Terminsystem glättet sie und senkt die Wartezeit stark, gegen eine Verschiebung von rund zehn Minuten.",
     "Niedrige Quote": "Nur 60 % buchen: in der gemeinsamen Schlange bleibt fast alles beim Alten, der Vorrang verteilt die Wartezeit nur um (Termininhaber kurz, die anderen lang).",
     "Fenster zu weit": "Die Fenster sind weiter als das Gate: sie lassen die Spitze durch und bringen kaum etwas.",
-    "Voller Tag": "Volle Auslastung: ohne Termine bricht das Gate zusammen, mit Terminen bleibt es tragbar, aber die Verschiebung wird groß.",
+    "Voller Tag": "Volle Auslastung: ohne Termine bricht das Gate zusammen, mit Terminen bleibt es hinnehmbar, aber die Verschiebung wird groß.",
 }
 # Je Zeile drei Schaltflächen: bei fünf in einer Zeile werden die Namen in schmalen Fenstern abgeschnitten.
 preset_names = list(C.PRESETS.keys())

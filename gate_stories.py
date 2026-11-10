@@ -1,4 +1,4 @@
-"""Abnahmekriterien der Presets (Plan, Abschnitt 7): Welche Geschichte erzählt jedes Beispielszenario, und woran erkennt man, dass sie trägt?
+"""Abnahmekriterien der Presets (Plan, Abschnitt 7): Welche Geschichte erzählt jedes Beispielszenario, und woran erkennt man, dass sie stimmt?
 
 Einzige Quelle für `tools/tune_presets.py` (Abstimmung) und `tests/test_preset_stories.py` (Abnahme). Jedes Kriterium ist eine Aussage über ein Tupel von `DayRow`s (gate_evaluation): über viele Tage
 die Aussage im MITTEL (`criteria`), über den EINEN Tag des Presets dieselbe Aussage an diesem Tag (`holds`; ein Tag hat 350 bis 850 Lkw, die Mittel sind stabil). So wird dieselbe Geschichte an der

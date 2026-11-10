@@ -48,7 +48,7 @@ Tag mit drei Regeln kostet 1,5 bis 3 ms; der größte Fall komplett unter 2 s).
 | **Wie viele Spuren spart das Terminsystem?** | Für „95 % warten höchstens 15 min“: 500 / 700 / 900 Lkw brauchen ohne Terminsystem 4 / 6 / 7 Spuren, mit Terminsystem 3 / 4 / 4 (bei 900 Lkw 36,8 min Verschiebung, 4 % ohne Fenster); Messreihe über 200 Tage, die App rechnet je Punkt nur 50 Tage und zeigt bei 700 Lkw ohne Terminsystem 5 statt 6 Spuren, weil das 95. Perzentil dort dicht an der 15-min-Schwelle liegt. |
 | **Was, wenn die Lkw unpünktlich sind?** | Das Terminsystem hält bis σ ≈ 90 min (drei Fensterlängen); erst dort ist der Unterschied weg, weil die Verspätung die Spitzen auch ohne Termine verschmiert. |
 | **Was ändert nichts?** | Fensterlänge 10 bis 120 min bei gleicher relativer Kapazität: Wartezeit 1,3 bis 1,4 min. Größere Streuung der Bearbeitung erhöht die Wartezeit mit Terminsystem (cv 1,5: 2,9 statt 1,4 min). Ohne Spitzen bringt das Terminsystem nichts. |
-| **Presets** | Eine gemeinsame Tages-Nummer (Seed 289) für alle fünf; jede Kennzahl zwischen dem 10. und 90. Perzentil der Grundgesamtheit. Von 500 Seeds tragen 215 alle fünf Geschichten. |
+| **Presets** | Eine gemeinsame Tages-Nummer (Seed 289) für alle fünf; jede Kennzahl zwischen dem 10. und 90. Perzentil der Grundgesamtheit. Von 500 Seeds erfüllen 215 alle fünf Geschichten. |
 
 ## Ehrliche Grenzen
 
