@@ -151,7 +151,7 @@ def generate_gate_pdf(p, seed, outcomes, diag, sample=None, curve=None, compress
     heading("Hinweise zum Modell")
     pdf.set_font("Helvetica", "", 9)
     for text in [
-        "Ein Betriebstag von 12 Stunden; Wunschzeiten teils in zwei Stoßzeiten; Bearbeitung am Gate lognormal (Streuung 0,6); Gate mit gleichen Spuren und einer gemeinsamen Schlange.",
+        "Ein Betriebstag von 12 Stunden; Wunschzeiten teils in zwei Stoßzeiten; Bearbeitung am Gate lognormal (Variationskoeffizient 0,6); Gate mit gleichen Spuren und einer gemeinsamen Schlange.",
         "Alle Lkw sind gleich; keine No-Shows, keine Ablehnung zu früher Lkw, keine Platzgrenze der Schlange, keine Spurtypen. Die Lkw buchen ohne Absprache in zufälliger Reihenfolge das nächste freie Fenster.",
         "Die Verschiebung ist kein Geldbetrag; Wartezeit und Verschiebung werden bewusst nicht zu einer Zahl vermischt.",
         "Alle Zahlen sind Größenordnungen aus einer Simulation mit zufälligen Tagen, keine Messung an echten Terminals; die Rechnung ist gegen die Theorie (Erlang C) geprüft.",

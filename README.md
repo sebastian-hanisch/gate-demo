@@ -17,7 +17,7 @@ nutzlos aus. Im belasteten Bereich (die Stoßzeiten liegen über der Gate-Kapazi
 
 ## Modell
 
-Ein Betriebstag von 12 Stunden; *N* Lkw mit **Wunschzeit** (ein Anteil in zwei Stoßzeiten bei 25 % und 70 % des Tages, Streuung 45 min, der Rest gleichverteilt); Bearbeitung am Gate lognormal (Mittel *s*, Streuung 0,6);
+Ein Betriebstag von 12 Stunden; *N* Lkw mit **Wunschzeit** (ein Anteil in zwei Stoßzeiten bei 25 % und 70 % des Tages, Streuung 45 min, der Rest gleichverteilt); Bearbeitung am Gate lognormal (Mittel *s*, Variationskoeffizient 0,6);
 *c* gleiche Spuren, **eine gemeinsame Schlange**. **Freie Anfahrt:** Ankunft = Wunschzeit + Verspätung (σ). **Terminsystem:** Fenster von 30 min mit höchstens *K* Lkw (*K* = Fensterkapazität in % dessen, was das Gate in 30 min
 schafft); ein Anteil der Lkw (Buchungsquote) bucht in zufälliger Reihenfolge das dem Wunsch nächste Fenster mit Platz **innerhalb des Betriebstags**; wer keins findet oder nicht bucht, kommt wie ohne Termin.
 **Vorrang:** wird eine Spur frei, bedient sie zuerst den am längsten wartenden Lkw mit Termin. Kennzahlen: mittlere Wartezeit, 95. Perzentil, Anteil über 15 min und die **Verschiebung** (mittlerer Abstand zwischen gebuchtem und
@@ -47,7 +47,7 @@ Tag mit drei Regeln kostet 1,5 bis 3 ms; der größte Fall komplett unter 2 s).
 | **Was macht der Vorrang?** | Bei 60 % Quote warten Termininhaber **1,1 min**, Lkw ohne Termin **21,7 min**; das Mittel bleibt (9,26 gegen 9,27), das **95. Perzentil verdoppelt sich** (28,7 → 54,3 min): der Vorrang verlagert, er spart nicht. |
 | **Wie viele Spuren spart das Terminsystem?** | Für „95 % warten höchstens 15 min“: 500 / 700 / 900 Lkw brauchen ohne Terminsystem 4 / 6 / 7 Spuren, mit Terminsystem 3 / 4 / 4 (bei 900 Lkw 36,8 min Verschiebung, 4 % ohne Fenster); Messreihe über 200 Tage, die App rechnet je Punkt nur 50 Tage und zeigt bei 700 Lkw ohne Terminsystem 5 statt 6 Spuren, weil das 95. Perzentil dort dicht an der 15-min-Schwelle liegt. |
 | **Was, wenn die Lkw unpünktlich sind?** | Das Terminsystem hält bis σ ≈ 90 min (drei Fensterlängen); erst dort ist der Unterschied weg, weil die Verspätung die Spitzen auch ohne Termine verschmiert. |
-| **Was ändert nichts?** | Fensterlänge 10 bis 120 min bei gleicher relativer Kapazität: Wartezeit 1,3 bis 1,4 min. Größere Streuung der Bearbeitung erhöht die Wartezeit mit Terminsystem (cv 1,5: 2,9 statt 1,4 min). Ohne Spitzen bringt das Terminsystem nichts. |
+| **Was ändert nichts?** | Fensterlänge 10 bis 120 min bei gleicher relativer Kapazität: Wartezeit 1,3 bis 1,4 min. Ein größerer Variationskoeffizient der Bearbeitung erhöht die Wartezeit mit Terminsystem (cv 1,5: 2,9 statt 1,4 min). Ohne Spitzen bringt das Terminsystem nichts. |
 | **Presets** | Eine gemeinsame Tages-Nummer (Seed 289) für alle fünf; jede Kennzahl zwischen dem 10. und 90. Perzentil der Grundgesamtheit. Von 500 Seeds erfüllen 215 alle fünf Geschichten. |
 
 ## Ehrliche Grenzen
@@ -56,7 +56,7 @@ Tag mit drei Regeln kostet 1,5 bis 3 ms; der größte Fall komplett unter 2 s).
 - Die Schlange hat **keine Platzgrenze** (kein Rückstau auf die Straße); ein Tag startet und endet leer.
 - Wunschzeiten, Stoßzeiten und Bearbeitungszeit sind **Annahmen** (Größenordnung, nicht an Echtdaten gemessen); die Lkw buchen ohne Absprache in zufälliger Reihenfolge.
 - Die **Verschiebung ist kein Geldbetrag**; ihr Preis gegen eine Wartezeit ist Sache des Betreibers.
-- Fensterlänge (30 min) und Streuung der Bearbeitungszeit (0,6) sind fest.
+- Fensterlänge (30 min) und Variationskoeffizient der Bearbeitungszeit (0,6) sind fest.
 - Alle Zahlen sind **Größenordnungen aus einer Simulation, keine Messung an echten Terminals**.
 
 ## Design-Entscheidungen und Funde
@@ -88,7 +88,7 @@ im Test (sie werden nicht aus dem Code gelesen).
 - **PDF:** Inhalt Zelle für Zelle, genaue Sonderzeichen (fpdf2 stürzt bei „–“, „€“, „σ“ und Emoji ab), Randfälle.
 - **End-to-End (AppTest):** Skelett und Footer, jedes Preset, Permalink, alle Regler an Min und Max, die bedingte Meldung in allen Zuständen, Urteil in allen Zuständen, gesparte Spuren, Vergleichstabelle, PDF, Texte.
 
-Zusätzlich wurde jedes Modul mit **eingebauten Fehlern** geprüft (`tools/mutation_check.py`, 93 Mutanten, mit Zeitgrenze je Mutant). Der erste Lauf fand 84; von den neun Überlebenden waren sechs echte Lücken der Tests (Randwerte 0 und 100 % Stoßzeiten, ein einzelner Lkw,
+Zusätzlich wurde jedes Modul mit einem **Mutationstest** (absichtlich eingebauten Fehlern) geprüft (`tools/mutation_check.py`, 93 Mutanten, mit Zeitgrenze je Mutant). Der erste Lauf fand 84; von den neun Überlebenden waren sechs echte Lücken der Tests (Randwerte 0 und 100 % Stoßzeiten, ein einzelner Lkw,
 die Fehlermeldung bei nicht positiver Bearbeitungszeit, der Satz der Quotenmeldung, die Grenze von genau einer Minute im Preset „Ruhiger Tag“, die Beschriftung kleiner Anteile in der Verteilung); sie sind geschlossen und
 erneut geprüft. Drei Überlebende sind **gleichwertig**: die Klarheitsschwelle und die Fünf-Prozent-Grenze des Vorrang-Kriteriums genau auf einer Gleitkommagrenze, und eine Schutzbedingung im PDF, die bei Buchungsquoten ab 20 %
 nie auslöst (es gibt dann immer Lkw mit Termin).
@@ -108,7 +108,7 @@ nie auslöst (es gibt dann immer Lkw mit Termin).
 | `gate_pdf_export.py` | PDF-Ergebnis (`fpdf2`, Kernschrift, Sonderzeichen-Bereinigung) |
 | `gate_stories.py` | Abnahmekriterien der Presets (Quelle für Werkzeug und Tests) |
 | `tools/tune_presets.py`, `tools/PRESET_SWEEP.md` | Preset-Abstimmung und ihr Bericht |
-| `tools/mutation_check.py` | Fehler-Einbau-Test |
+| `tools/mutation_check.py` | Mutationstest |
 | `tests/` | siehe oben |
 
 ## Bewusst nicht umgesetzt (mögliche Erweiterungen)
@@ -125,7 +125,7 @@ pip install -r requirements-dev.txt
 streamlit run app.py
 ```
 
-Tests: `python -m pytest tests/ -v`. Preset-Abstimmung: `python tools/tune_presets.py population|seeds`. Fehler-Einbau: `python tools/mutation_check.py`.
+Tests: `python -m pytest tests/ -v`. Preset-Abstimmung: `python tools/tune_presets.py population|seeds`. Mutationstest: `python tools/mutation_check.py`.
 
 ---
 

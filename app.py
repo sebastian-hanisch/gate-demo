@@ -111,7 +111,7 @@ with st.sidebar:
     trucks = st.slider("Lkw pro Tag", *bounds("trucks_slider"), step=C.TRUCKS_STEP, key="trucks_slider",
                        help=f"Mittlere Auslastung der Spuren = Lkw mal Bearbeitungszeit durch Spuren mal Tag, jetzt {util_now * 100:.0f} %. Probleme entstehen, wenn die Stoßzeiten über der Kapazität liegen "
                             "(mittlere Auslastung ab etwa 60 %).")
-    service = st.slider("Bearbeitung je Lkw (min)", *bounds("service_slider"), key="service_slider", help="Mittlere Zeit am Gate (lognormal verteilt, Streuung 0,6).")
+    service = st.slider("Bearbeitung je Lkw (min)", *bounds("service_slider"), key="service_slider", help="Mittlere Zeit am Gate (lognormal verteilt, Variationskoeffizient 0,6).")
     peak_pct = st.slider("Anteil in Stoßzeiten (%)", *bounds("peak_slider"), step=C.PEAK_PCT_STEP, format="%d%%", key="peak_slider",
                          help="Anteil der Lkw, die eine von zwei Stoßzeiten wünschen (Schichtwechsel); der Rest kommt gleichverteilt. Ohne Spitzen gibt es nichts zu glätten.")
     cap_pct = st.slider("Fensterkapazität (% der Gate-Kapazität)", *bounds("cap_slider"), step=C.CAP_PCT_STEP, format="%d%%", key="cap_slider",
@@ -290,7 +290,7 @@ with st.expander("Wie funktioniert diese Demo?"):
     st.markdown(
         """
 **Der Tag.** Ein Betriebstag hat 12 Stunden. Jeder Lkw hat einen **Wunschzeitpunkt**: ein Teil wünscht eine von zwei **Stoßzeiten** (etwa Schichtwechsel), der Rest kommt gleichverteilt. Am Gate
-bedienen **Spuren** die Lkw aus einer gemeinsamen Schlange; die Bearbeitung dauert im Mittel so viele Minuten, wie eingestellt (lognormal, Streuung 0,6). Die Lkw kommen nicht auf die Minute:
+bedienen **Spuren** die Lkw aus einer gemeinsamen Schlange; die Bearbeitung dauert im Mittel so viele Minuten, wie eingestellt (lognormal, Variationskoeffizient 0,6). Die Lkw kommen nicht auf die Minute:
 die **Verspätung** streut mit σ um den Wunschzeitpunkt.
 
 **Drei Regeln**, alle auf demselben Tag (gleichen Zufallszahlen):
@@ -319,7 +319,7 @@ Standardfehler der gepaarten Differenz beträgt. Die Verteilung zeigt, an wie vi
 - Die Schlange vor dem Gate hat keine Platzgrenze (kein Rückstau auf die Straße); ein Tag startet und endet leer.
 - Wunschzeiten, Stoßzeiten und Bearbeitungszeit sind **Annahmen** (Größenordnung, nicht an Echtdaten gemessen); die Lkw buchen ohne Absprache.
 - Die **Verschiebung ist kein Geldbetrag**; ihr Preis gegen eine Wartezeit ist Sache des Betreibers, deshalb werden beide nicht zu einer Zahl vermischt.
-- Die Fensterlänge (30 min) und die Streuung der Bearbeitungszeit sind fest: 10 bis 120 min Fensterlänge sind bei gleicher relativer Kapazität kaum verschieden, eine größere Streuung erhöht die
+- Die Fensterlänge (30 min) und der Variationskoeffizient der Bearbeitungszeit sind fest: 10 bis 120 min Fensterlänge sind bei gleicher relativer Kapazität kaum verschieden, ein größerer Variationskoeffizient erhöht die
   Wartezeit mit Terminsystem.
 - Alle Zahlen sind **Größenordnungen aus einer Simulation, keine Messung an echten Terminals**; die Rechnung selbst ist gegen die Theorie (Erlang C) geprüft.
         """
